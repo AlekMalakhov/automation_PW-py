@@ -9,3 +9,9 @@ class TestCases:
 
     def delete_test_by_name(self, test_name: str):
         self.page.get_by_role("row", name=test_name).get_by_role("button").nth(3).click()
+
+    def check_columns_hidden(self):
+        description = self.page.is_hidden('.thDes')
+        author = self.page.is_hidden('.thAuthor')
+        executor = self.page.is_hidden('.thLast')
+        return description and author and executor

@@ -1,17 +1,19 @@
+from pytest import mark
 
-def test_new_tc(desktop_app_auth):
+ddt = {
+    'argnames': 'name, description',
+    'argvalues': [
+    ('jambo', 'elephant'),
+    ('1234', 'digits') ],
+    'ids': ['general test', 'test with digits']
+
+}
+
+@mark.parametrize(**ddt)
+def test_new_tc(desktop_app_auth, name, description):
     desktop_app_auth.navigate_to('Create new test')
-    test_name = 'jambo'
-    desktop_app_auth.create_test(test_name, 'elephant')
+    desktop_app_auth.create_test(name, description)
     desktop_app_auth.navigate_to('Test Cases')
-    desktop_app_auth.test_cases.check_test_exists(test_name)
-    desktop_app_auth.test_cases.delete_test_by_name(test_name)
+    desktop_app_auth.test_cases.check_test_exists(name)
+    desktop_app_auth.test_cases.delete_test_by_name(name)
 
-
-def test_new_tc_digits_name(desktop_app_auth):
-    desktop_app_auth.navigate_to('Create new test')
-    test_name = '1234'
-    desktop_app_auth.create_test(test_name, 'elephant')
-    desktop_app_auth.navigate_to('Test Cases')
-    desktop_app_auth.test_cases.check_test_exists(test_name)
-    desktop_app_auth.test_cases.delete_test_by_name(test_name)
