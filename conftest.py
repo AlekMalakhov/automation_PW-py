@@ -1,11 +1,17 @@
 import os
 import json
 import pytest
+import logging
 from pytest import fixture
 from playwright.sync_api import sync_playwright
 from page_objects.application import App
 from settings import *
 
+@fixture(autouse=True, scope='session')
+def preconditions():
+    logging.info('preconditions started')
+    yield
+    logging.info('postconditions started')
 @fixture(scope='session')
 def get_playwright():
     with sync_playwright() as playwright:

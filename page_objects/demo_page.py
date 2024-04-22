@@ -18,3 +18,17 @@ class DemoPages:
 
     def get_ajax_responses_count(self):
         return len(self.page.query_selector_all('css=.ajaxResponses > p'))
+
+    def click_new_page_button(self, ctrl_key=False):
+        if ctrl_key:
+            mod = ['Control']
+        else:
+            mod = None
+        self.page.click('.newPage', modifiers=mod)
+
+    def inject_js(self):
+        js = '''
+        console.error('this is injected error');
+        alert('this is injected alert');
+        '''
+        self.page.evaluate_handle(js)
