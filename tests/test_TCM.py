@@ -23,3 +23,6 @@ def test_testcase_does_not_exist(desktop_app_auth):
 
 def test_git1():
     assert True
+
+def test_git2():
+    assert True
