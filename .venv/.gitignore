@@ -1,0 +1,19 @@
+# Byte-compiled / optimized  DLL files
+# created by virtualenv automatically
+__pycache__/
+*.py[cod]
+*$py.class
+
+# folders
+.idea/
+.pytest_cache/
+
+# reporting
+report/
+
+# logs
+*.log
+
+# secure info
+secure.json
+
