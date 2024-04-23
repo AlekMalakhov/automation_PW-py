@@ -24,5 +24,11 @@ def test_testcase_does_not_exist(desktop_app_auth):
 def test_git1():
     assert True
 
-def test_git2():
-    assert True
+def test_delete_test_case(desktop_app_auth, get_web_service):
+    test_name = 'test for delete'
+    test_description = 'delete me pls'
+    get_web_service.create_test(test_name, test_description)
+    desktop_app_auth.navigate_to('Test Cases')
+    desktop_app_auth.test_cases.check_test_exists(test_name)
+    desktop_app_auth.test_cases.delete_test_by_name(test_name)
+    desktop_app_auth.test_cases.check_test_does_not_exists(test_name)
